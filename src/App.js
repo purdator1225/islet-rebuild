@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+
+import { Routes, Route } from 'react-router-dom';
+
+import Navbar from './routes/navbar/navbar.component';
+
+import Home from './routes/home/home.component';
 
 function App() {
+
+  const videos = [{
+    id: 744082385, 
+    name: "Lumiere",
+    role: "Full Production" ,
+    key:1
+  },{
+    id: 696325791, 
+    name: "Batman",
+    role: "Full Production" ,
+    key:2
+  },
+  {id: 606285014, 
+    name: "Ode to my GrandMothers",
+    role: "Full Production",
+    key:3}
+]
+
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <Routes>
+    <Route path="/" element={<Navbar/>}>
+
+    <Route index element={<Home videos={videos}/>}/>
+
+    </Route>
+    </Routes>
   );
 }
 
