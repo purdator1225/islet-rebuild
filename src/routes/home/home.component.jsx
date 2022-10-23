@@ -1,28 +1,30 @@
 // import Swiper core and required modules
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay} from "swiper";
 
 import { Swiper, SwiperSlide } from "swiper/react";
+
+import './home.styles.scss'
 
 import Vimeo from "@u-wave/react-vimeo";
 
 import { Outlet } from "react-router-dom";
 
 // Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import "swiper/css/scrollbar";
-
 
 const Home = ({ videos }) => {
   return (
 
-    <div>
+    <div className="home-container">
     <Swiper
       // install Swiper modules
-      modules={[Navigation, Pagination, Scrollbar, A11y]}
-      spaceBetween={50}
-      navigation
+      modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
+      slidesPerView={1}
+      autoplay={{
+          delay: 5000,
+          disableOnInteraction: false,
+        }}
+      loop={true}
+      direction="vertical"
       pagination={{ clickable: true }}
       scrollbar={{ draggable: true }}
       onSwiper={(swiper) => console.log(swiper)}
@@ -35,7 +37,6 @@ const Home = ({ videos }) => {
       ))}
       ...
     </Swiper>
-    <Outlet/>
     
     </div>
   );

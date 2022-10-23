@@ -4,6 +4,10 @@ import Navbar from "./routes/navbar/navbar.component";
 
 import Home from "./routes/home/home.component";
 
+import ContactUS from "./routes/contact-us/contact-us";
+
+import AboutUS from "./routes/about-us/about-us";
+
 function App() {
   const videos = [
     {
@@ -30,6 +34,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Navbar />}>
         <Route index element={<Home videos={videos} />} />
+        <Route path='/about-us' element={<AboutUS/>}/>
+        <Route path='/contact-us' element={<ContactUS/>}/>
       </Route>
     </Routes>
   );

@@ -1,27 +1,44 @@
-import './navbar.styles.scss'
+import "./navbar.styles.scss";
 
-import { Fragment } from 'react';
+import { useState } from "react";
 
-import {ReactComponent as IsletLogo} from '../../assets/Isletlogo.svg'
+import { Fragment } from "react";
 
+import { ReactComponent as IsletLogo } from "../../assets/Isletlogo.svg";
 
-import { Outlet,Link } from 'react-router-dom';
+import MenuButton from "../../components/menu-icon/menu-icon";
 
-const Navbar = () =>{
-    return (
-    
+import SubMenu from "../../components/submenu/submenu.component";
+
+import { Outlet, Link } from "react-router-dom";
+
+const Navbar = () => {
+  const [isMenuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenuOpen = () => {
+    setMenuOpen(!isMenuOpen);
+  };
+
+  return (
     <Fragment>
-        <div className='navbar-container'>
-            <Link to='/'>
-
-            <IsletLogo/>
-            </Link>
+        {isMenuOpen && <SubMenu />}
+      <div className="navbar-container">
+      
+        <div className="navbar-links">
+          <Link to="/" className="logo-wrapper">
+            <IsletLogo />
+          </Link>
+          <div onClick={toggleMenuOpen}>
+            <MenuButton />
+          
+          </div>
+          
         </div>
-
-
-        <Outlet/>
-    </Fragment>)
-}
-
+     
+      </div>
+      <Outlet />
+    </Fragment>
+  );
+};
 
 export default Navbar;
