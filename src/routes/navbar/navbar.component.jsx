@@ -10,6 +10,9 @@ import MenuButton from "../../components/menu-icon/menu-icon";
 
 import SubMenu from "../../components/submenu/submenu.component";
 
+import { motion, AnimatePresence } from "framer-motion";
+
+
 import { Outlet, Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -21,7 +24,19 @@ const Navbar = () => {
 
   return (
     <Fragment>
-        {isMenuOpen && <SubMenu />}
+    <AnimatePresence>
+      {isMenuOpen && (
+        <motion.div className="animation-wrapper"
+          // initial={{ }}
+          animate={{ y: [-1000,0]}}
+          exit={{ y: [0,-1000] }}
+        >
+        <SubMenu />
+          
+        </motion.div>
+      )}
+    </AnimatePresence>
+
       <div className="navbar-container">
       
         <div className="navbar-links">

@@ -8,6 +8,8 @@ import ContactUS from "./routes/contact-us/contact-us";
 
 import AboutUS from "./routes/about-us/about-us";
 
+import CaseStudies from "./routes/case-studies/case-studies.component";
+
 function App() {
   const videos = [
     {
@@ -36,6 +38,7 @@ function App() {
         <Route index element={<Home videos={videos} />} />
         <Route path='/about-us' element={<AboutUS/>}/>
         <Route path='/contact-us' element={<ContactUS/>}/>
+        <Route path='/case-studies' element={<CaseStudies/>}/>
       </Route>
     </Routes>
   );
