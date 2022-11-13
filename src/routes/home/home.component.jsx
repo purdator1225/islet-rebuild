@@ -7,30 +7,28 @@ import "./home.styles.scss";
 
 import Vimeo from "../../components/vimeo-player/vimeo.component";
 
-import { Outlet } from "react-router-dom";
 
 // Import Swiper styles
 
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-
-
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const Home = ({ videos }) => {
-
   const pagination = {
-    el: ".swiper-pagination",
-    type: "bullets",
+    el: '.swiper-pagination',
     clickable: true,
     renderBullet: function (index, className) {
-      return '<span class="' +
+      return (
+        '<span class="' +
         className +
         '"><span class="number">' +
         (index + 1) +
         '</span><span class="circle"></span></span>'
-    }}
-
+      );
+    },
+  };
+  
 
   return (
     <div className="home-container">
@@ -44,14 +42,14 @@ const Home = ({ videos }) => {
           disableOnInteraction: false,
         }}
         loop={true}
-        speed= {1000}
+        speed={1000}
         mousewheel={true}
-        direction='vertical'
+        direction="vertical"
         scrollbar={{ draggable: true }}
       >
         {videos.map((video) => (
-          <SwiperSlide key={video.key} className='swiper-slide'>
-            <Vimeo video={video.id} autoplay background loop  />
+          <SwiperSlide key={video.key} className="swiper-slide">
+            <Vimeo video={video.id} autoplay background loop />
           </SwiperSlide>
         ))}
       </Swiper>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext, useEffect, useRef} from "react";
 
 import Lottie from "react-lottie-segments";
 
@@ -7,7 +7,17 @@ import MenuIcon from "../../assets/lottie/islet-menu-icon.json";
 import './menu-icon.styles.scss'
 
 
+import { NavContext } from "../../assets/contexts/navbar-context";
+
 const MenuButton = () => {
+
+ const {isMenuOpen, setMenuOpen} = useContext(NavContext);
+
+
+//whenever is MenuOpen is false, run setSequence
+
+//Whenever isMenuOpen is true, set the sequence to 33.5 -> 77 run setSequence
+
 
   const [sequence, setSequence] = useState({
     segments: [0, 1],
@@ -27,7 +37,7 @@ const MenuButton = () => {
     let start = sequence.segments[0];
     let stop = sequence.segments[1];
 
-    if (stop === 1 || stop === 77) {
+    if (!isMenuOpen) {
         start = 0;
         stop = 33.5;
       } else {
@@ -35,15 +45,32 @@ const MenuButton = () => {
         stop = 77;
       }
 
-
     setSequence({ 
         segments: [start, stop],
         forceFlag: true
       })
   }
+
+
+  let initialRender = useRef(true);
+
+  useEffect(() => {
+
+    if (initialRender.current) {
+      initialRender.current= false
+    }
+
+    else {animate()}
+   
+  
+  }, [isMenuOpen]);
+
+
+
   return (
 
-  <div className="menu-icon-wrapper" onClick={()=> animate()}>
+    <div className="menu-icon-wrapper" onClick={()=>setMenuOpen(!isMenuOpen)}>
+
     <Lottie
       options={options}
       speed={1.5}
@@ -52,7 +79,9 @@ const MenuButton = () => {
       isClickToPauseDisabled={true}
       playSegments={sequence}
     />
-  </div>)
+  </div>
+  
+  )
 };
 
 export default MenuButton;
